@@ -1,0 +1,82 @@
+[
+  {
+    "_id": "b774b59b-0e34-411f-90bb-88a601fd8d63",
+    "colId": "history",
+    "containerId": "",
+    "name": "http",
+    "url": "http://localhost:4200/messages?sessionId=dev",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2025-03-22T20:10:18.742Z",
+    "modified": "2025-03-23T18:35:18.534Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "sessionId",
+        "value": "dev",
+        "isPath": false
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"resources/list\"\n}",
+      "form": []
+    }
+  },
+  {
+    "_id": "d40078d6-c188-40ae-87e4-92c34a9ebc5d",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:4200/sse",
+    "url": "http://localhost:4200/sse",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2025-03-22T21:13:02.606Z",
+    "modified": "2025-03-22T21:13:02.606Z",
+    "headers": [],
+    "reqType": "sse"
+  },
+  {
+    "_id": "02654958-10c4-49b9-83a6-6c3445fb4952",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:4200/messages?sessionId=3831dbd1-6a18-45f2-a844-5f408604f8e6",
+    "url": "http://localhost:4200/messages?sessionId=3831dbd1-6a18-45f2-a844-5f408604f8e6",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2025-03-24T01:21:50.555Z",
+    "modified": "2025-03-24T01:21:50.555Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "sessionId",
+        "value": "3831dbd1-6a18-45f2-a844-5f408604f8e6",
+        "isPath": false
+      }
+    ]
+  },
+  {
+    "_id": "f058476d-f575-49b6-8337-216c894cbd3b",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:4200/messages?sessionId=3831dbd1-6a18-45f2-a844-5f408604f8e6",
+    "url": "http://localhost:4200/messages?sessionId=dev",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2025-03-24T01:22:10.646Z",
+    "modified": "2025-03-24T01:31:10.565Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "sessionId",
+        "value": "dev",
+        "isPath": false
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\": 1,\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"resources/list\"\n}",
+      "form": []
+    }
+  }
+]
