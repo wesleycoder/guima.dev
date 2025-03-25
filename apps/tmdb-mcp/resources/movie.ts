@@ -1,4 +1,5 @@
 import type { RequestHandlerExtra, Variables } from "@modelcontextprotocol/sdk"
+import client from "@pkgs/tmdb-api"
 
 export default {
   name: "movie",
@@ -22,22 +23,13 @@ export default {
       return await new Set([value, "1", "2", "3"]).values().toArray()
     },
   },
-  async callback(url: URL, params: Variables) {
+  async callback(uri: URL, params: Variables) {
+    const movie = await client.getMovieById(params.id)
     return await {
       contents: [{
-        uri: `tmdb://movie/${params.id}`,
+        uri,
         mimeType: "application/json",
-        text: JSON.stringify(
-          {
-            id: 1,
-            url,
-            title: `Sample Movie ${params.id}`,
-            overview: `This is a sample movie for testing ${params.id}`,
-            release_date: "2023-01-01",
-          },
-          null,
-          2,
-        ),
+        text: JSON.stringify(movie),
       }],
     }
   },
