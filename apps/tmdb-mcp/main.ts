@@ -26,7 +26,6 @@ export const activeTransports = new Map<string, SSEServerTransport>()
 export const activeServers = new Map<string, McpServer>()
 
 async function deleteTransport(sessionId: string) {
-  console.log("deleteTransport", sessionId)
   const transport = activeTransports.get(sessionId)
   if (transport) {
     await transport.close()
@@ -35,7 +34,6 @@ async function deleteTransport(sessionId: string) {
 }
 
 async function deleteServer(sessionId: string) {
-  console.log("deleteServer", sessionId)
   const server = activeServers.get(sessionId)
   if (server) {
     await server.close()
@@ -128,8 +126,12 @@ app.post("/messages", async (c) => {
 
   const msg = await c.req.json()
 
-  if (typeof msg === "object" && msg !== null) {
-    console.log(msg.method, msg.params)
+  if (env.isDev && typeof msg === "object" && msg !== null) {
+    console.info(
+      `%c[${sessionId}] ${msg.method}:\n%c${JSON.stringify(msg.params, null, 2)}`,
+      "color: #0ff; font-weight: bold;",
+      "color: #42ff42",
+    )
   }
 
   await transport.handleMessage(msg)
@@ -177,7 +179,7 @@ app.on("close", ["*"], async (c) => {
 const controller = new AbortController()
 
 async function shutdown(signal: string) {
-  console.log(`\n${signal} received. Shutting down gracefully...`)
+  console.warn(`\n${signal} received. Shutting down gracefully...`)
   isServerReady = false
 
   await Promise.all(
@@ -190,7 +192,7 @@ async function shutdown(signal: string) {
   activeTransports.clear()
   activeServers.clear()
   controller.abort()
-  console.log("Shutdown complete.")
+  console.warn("Shutdown complete.")
 }
 
 if (import.meta.main) {
