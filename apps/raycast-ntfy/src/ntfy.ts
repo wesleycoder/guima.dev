@@ -8,6 +8,8 @@ type Arguments = {
 
 type Preferences = {
   defaultTopic: string
+  defaultServer: string
+  cache: boolean
 }
 
 type Action = {
@@ -90,18 +92,18 @@ const parseMessage = async ({ url, message }: { url?: string; message?: string }
 
 export default async function main(props: { arguments: Arguments }) {
   try {
-    const preferences = getPreferenceValues<Preferences>()
-    const topic = props.arguments.topic || preferences.defaultTopic
+    const { defaultTopic, cache, defaultServer } = getPreferenceValues<Preferences>()
+    const topic = props.arguments.topic || defaultTopic
 
     if (!topic) throw new Error("No topic provided")
 
     const { headers, msgType, ...body } = await parseMessage(props.arguments, topic)
 
-    const response = await fetch("https://ntfy.sh", {
+    const response = await fetch(defaultServer, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Cache": "no-cache",
+        ...(cache ? { "Cache": "no-cache" } : {}),
         ...headers,
       },
       body: JSON.stringify(body),
