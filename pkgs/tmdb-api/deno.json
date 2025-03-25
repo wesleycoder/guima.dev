@@ -1,0 +1,24 @@
+{
+  "name": "@pkgs/tmdb-api",
+  "exports": {
+    ".": "./main.ts"
+  },
+  "tasks": {
+    "dev": {
+      "command": "deno run -REN --watch main.ts",
+      "dependencies": ["gen"]
+    },
+    "gen": "deno run -RENW generateClient.ts"
+  },
+  "imports": {
+    "#/": "./",
+    "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.49",
+    "@std/assert": "jsr:@std/assert@1",
+    "openapi-fetch": "npm:openapi-fetch@^0.13.5",
+    "openapi-typescript": "npm:openapi-typescript@^7.6.1",
+    "zod": "npm:zod@^3.24.2"
+  },
+  "compilerOptions": {
+    "types": ["@pkgs/types"]
+  }
+}

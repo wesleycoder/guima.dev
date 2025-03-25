@@ -1,0 +1,33 @@
+alias d="deno"
+alias da="deno add"
+alias di="deno install"
+alias dt="deno task"
+alias dr="deno run -E"
+alias ds="deno task start"
+
+function on() {
+  set -o localoptions -o localtraps
+  TRAPINT() {
+    popd &>/dev/null
+  }
+  TRAPQUIT() {
+    popd &>/dev/null
+  }
+  TRAPTERM() {
+    popd &>/dev/null
+  }
+  TRAPERR() {
+    popd &>/dev/null
+  }
+  TRAPZERR() {
+    popd &>/dev/null
+  }
+  TRAPEXIT() {
+    popd &>/dev/null
+  }
+
+  pushd $1 &>/dev/null
+  shift
+  $*
+  return 0
+}

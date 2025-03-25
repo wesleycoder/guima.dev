@@ -1,0 +1,11 @@
+# Mac
+.DS_Store
+
+# Node Modules
+node_modules/
+
+# Env files (while I don't add dotenvx or similar)
+!.env.local
+!.env.example
+.env
+.env.*

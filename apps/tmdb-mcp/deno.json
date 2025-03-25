@@ -1,0 +1,26 @@
+{
+  "name": "@wes/tmdb-mcp",
+  "exports": {
+    ".": "./main.ts"
+  },
+  "tasks": {
+    "dev": "deno run -REN --watch main.ts",
+    "start": "PORT=4242 IS_DEV=false deno run -REN main.ts"
+  },
+  "imports": {
+    "#/": "./",
+    "@hono/hono": "jsr:@hono/hono@^4.7.4",
+    "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.7.0",
+    "@std/assert": "jsr:@std/assert@1",
+    "nanoid": "npm:nanoid@^5.1.5",
+    "zod": "npm:zod@^3.24.2"
+  },
+  "compilerOptions": {
+    "jsx": "precompile",
+    "jsxImportSource": "hono/jsx",
+    "types": [
+      "@pkgs/types",
+      "./tools"
+    ]
+  }
+}

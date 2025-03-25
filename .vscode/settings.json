@@ -1,0 +1,26 @@
+{
+  "deno.enablePaths": [
+    "./"
+  ],
+  "editor.inlayHints.enabled": "off",
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "[javascript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "thunder-client.saveToWorkspace": true
+}

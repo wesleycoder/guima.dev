@@ -1,0 +1,8 @@
+{
+  "name": "@pkgs/types",
+  "exports": {
+    ".": "./main.d.ts"
+  },
+  "tasks": {},
+  "imports": {}
+}
