@@ -1,0 +1,12 @@
+$schema: https://raw.githubusercontent.com/DavidAnson/markdownlint/v0.37.4/schema/markdownlint-config-schema-strict.json
+
+default: true
+extends: null
+
+line-length:
+  line_length: 120
+  stern: true
+
+first-line-heading: false
+
+link-image-reference-definitions: false

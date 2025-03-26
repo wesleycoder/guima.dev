@@ -20,7 +20,7 @@
     {
       "name": "ntfy",
       "title": "Ntfy",
-      "subtitle": "Send a message and/or link",
+      "subtitle": "Send a message/link via ntfy.sh",
       "description": "Sends a message and/or link to your device via ntfy.sh notification",
       "mode": "no-view",
       "arguments": [
