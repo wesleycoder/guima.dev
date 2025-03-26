@@ -8,7 +8,8 @@
   "nodeModulesDir": "auto",
   "fmt": {
     "lineWidth": 120,
-    "semiColons": false
+    "semiColons": false,
+    "singleQuote": true
   },
   "compilerOptions": {
     "types": ["pkgs/types/main.d.ts"]

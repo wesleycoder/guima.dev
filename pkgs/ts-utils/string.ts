@@ -1,17 +1,17 @@
 export const truthyStrings = new Set([
-  "1",
-  "y",
-  "yes",
-  "on",
-  "true",
-  "enable",
-  "enabled",
+  '1',
+  'y',
+  'yes',
+  'on',
+  'true',
+  'enable',
+  'enabled',
 ])
 
 export const stringIsTruthy = (value: unknown) => {
-  if (typeof value === "boolean") return value
-  if (typeof value === "number") return !!value
-  if (typeof value === "string") {
+  if (typeof value === 'boolean') return value
+  if (typeof value === 'number') return !!value
+  if (typeof value === 'string') {
     const normalized = value.toString().toLowerCase().trim()
 
     return truthyStrings.has(normalized)
@@ -21,11 +21,11 @@ export const stringIsTruthy = (value: unknown) => {
 }
 
 const envMap = {
-  development: "dev",
-  production: "prod",
-  testing: "test",
-  staging: "stag",
-  local: "local",
+  development: 'dev',
+  production: 'prod',
+  testing: 'test',
+  staging: 'stag',
+  local: 'local',
 } as const
 
 type LongEnv = keyof typeof envMap

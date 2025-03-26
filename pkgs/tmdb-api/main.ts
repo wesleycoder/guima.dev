@@ -1,7 +1,7 @@
-import client, { type Movie, type MovieSearch } from "#/client.ts"
+import client, { type Movie, type MovieSearch } from '#/client.ts'
 
 export const getMovieById = async (movieId: number) => {
-  const res = await client.GET("/3/movie/{movie_id}", {
+  const res = await client.GET('/3/movie/{movie_id}', {
     params: { path: { movie_id: movieId } },
   })
 
@@ -17,12 +17,12 @@ export const getMoviesByIds = async (ids: number[]) => {
 }
 
 export const searchMovies = async (query: string) => {
-  const res = await client.GET("/3/search/movie", {
+  const res = await client.GET('/3/search/movie', {
     params: { query: { query } },
   })
 
   if (!res.data) {
-    throw new Error("No movies found")
+    throw new Error('No movies found')
   }
 
   return res.data satisfies MovieSearch

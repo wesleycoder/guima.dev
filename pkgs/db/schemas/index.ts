@@ -1,1 +1,1 @@
-export * from "./movies.ts"
+export * from './movies.ts'

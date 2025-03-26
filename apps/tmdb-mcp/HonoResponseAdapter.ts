@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto"
+import { randomUUID } from 'node:crypto'
 
 // Adapter class for Hono response to make it compatible with SSEServerTransport
 export class HonoResponseAdapter {
@@ -37,7 +37,7 @@ export class HonoResponseAdapter {
   }
 
   on(event: string, handler: () => void): this {
-    if (event === "close") {
+    if (event === 'close') {
       this.onCloseHandlers.push(handler)
     }
     return this

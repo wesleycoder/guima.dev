@@ -1,4 +1,4 @@
-import { getMovieById, getMoviesByIds, searchMovies } from "./movie.ts"
+import { getMovieById, getMoviesByIds, searchMovies } from './movie.ts'
 
 export const tools = new Map<string, TMDBTool>([
   [getMovieById.name, getMovieById],
@@ -11,8 +11,8 @@ export const methods = Array.from(tools.entries()).map(([name, tool], index) => 
   description: tool.description,
   examplePayload: {
     id: index + 1,
-    jsonrpc: "2.0",
-    method: "tools/call",
+    jsonrpc: '2.0',
+    method: 'tools/call',
     params: {
       name,
       arguments: tool.examplePayload,

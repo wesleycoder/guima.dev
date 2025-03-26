@@ -3,8 +3,8 @@ import type {
   ListResourcesCallback,
   ReadResourceTemplateCallback,
   ToolCallback,
-} from "@modelcontextprotocol/sdk/dist/esm/server/mcp.d.ts"
-import type { z, ZodRawShape } from "zod"
+} from '@modelcontextprotocol/sdk/dist/esm/server/mcp.d.ts'
+import type { z, ZodRawShape } from 'zod'
 
 declare global {
   // deno-lint-ignore ban-types

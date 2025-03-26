@@ -1,6 +1,6 @@
-import type { CallToolResult } from "@modelcontextprotocol/sdk/dist/esm/types.d.ts"
-import client from "@pkgs/tmdb-api"
-import { z, type ZodRawShape } from "zod"
+import type { CallToolResult } from '@modelcontextprotocol/sdk/dist/esm/types.d.ts'
+import client from '@pkgs/tmdb-api'
+import { z, type ZodRawShape } from 'zod'
 
 const getMovieByIdInputSchema = {
   id: z.number(),
@@ -9,8 +9,8 @@ const getMovieByIdInputSchema = {
 type Content = CallToolResult
 
 export const getMovieById = {
-  name: "get_movie_by_id",
-  description: "Get a movie by its ID. Useful for getting information about a single movie by its ID",
+  name: 'get_movie_by_id',
+  description: 'Get a movie by its ID. Useful for getting information about a single movie by its ID',
   paramsSchema: getMovieByIdInputSchema,
   examplePayload: {
     id: 123,
@@ -20,14 +20,14 @@ export const getMovieById = {
     return await {
       content: [
         {
-          type: "text",
+          type: 'text',
           text: `Title: ${movie.title}\nOverview: ${movie.overview}\nRelease Date: ${movie.release_date}`,
         },
         {
-          type: "resource",
+          type: 'resource',
           resource: {
             uri: `tmdb://movie/${params.id}`,
-            mimeType: "application/json",
+            mimeType: 'application/json',
             metadata: {
               title: movie.title,
               overview: movie.overview,
@@ -46,8 +46,8 @@ const getMoviesByIdsInputSchema = {
 } satisfies ZodRawShape
 
 export const getMoviesByIds = {
-  name: "get_movies_by_ids",
-  description: "Get multiple movies by their IDs. Useful for getting information about a list of movies by their IDs",
+  name: 'get_movies_by_ids',
+  description: 'Get multiple movies by their IDs. Useful for getting information about a list of movies by their IDs',
   paramsSchema: getMoviesByIdsInputSchema,
   examplePayload: {
     ids: [123, 456],
@@ -57,25 +57,25 @@ export const getMoviesByIds = {
     return await {
       content: [
         {
-          type: "text",
-          description: "Number of movies found",
+          type: 'text',
+          description: 'Number of movies found',
           text: `Found ${movies.length} movies`,
         },
         {
-          type: "text",
-          description: "Movie IDs",
-          text: movies.map((movie) => movie.id).join(", ") ?? "No movies found",
+          type: 'text',
+          description: 'Movie IDs',
+          text: movies.map((movie) => movie.id).join(', ') ?? 'No movies found',
         },
         {
-          type: "text",
-          description: "Movie titles",
-          text: movies.map((movie) => movie.title).join("\n") ?? "No movies found",
+          type: 'text',
+          description: 'Movie titles',
+          text: movies.map((movie) => movie.title).join('\n') ?? 'No movies found',
         },
         {
-          type: "resource",
+          type: 'resource',
           resource: {
-            uri: `tmdb://movie/list_by_ids/${params.ids.join(",")}`,
-            mimeType: "application/json",
+            uri: `tmdb://movie/list_by_ids/${params.ids.join(',')}`,
+            mimeType: 'application/json',
             text: JSON.stringify(movies),
           },
         },
@@ -89,36 +89,36 @@ const searchMoviesInputSchema = {
 } satisfies ZodRawShape
 
 export const searchMovies = {
-  name: "search_movies",
-  description: "Search for movies by common search terms. Useful for finding movies by title, summary, actor, or genre",
+  name: 'search_movies',
+  description: 'Search for movies by common search terms. Useful for finding movies by title, summary, actor, or genre',
   paramsSchema: searchMoviesInputSchema,
   examplePayload: {
-    query: "The Matrix",
+    query: 'The Matrix',
   },
   async callback(params: ToolParams<typeof searchMoviesInputSchema>) {
     const movies = await client.searchMovies(params.query)
     return await {
       content: [
         {
-          type: "text",
-          description: "Number of movies found",
+          type: 'text',
+          description: 'Number of movies found',
           text: `Found ${movies.results?.length} movies`,
         },
         {
-          type: "text",
-          description: "Movie IDs",
-          text: movies.results?.map((movie) => movie.id).join(", ") ?? "No movies found",
+          type: 'text',
+          description: 'Movie IDs',
+          text: movies.results?.map((movie) => movie.id).join(', ') ?? 'No movies found',
         },
         {
-          type: "text",
-          description: "Movie titles",
-          text: movies.results?.map((movie) => movie.title).join("\n") ?? "No movies found",
+          type: 'text',
+          description: 'Movie titles',
+          text: movies.results?.map((movie) => movie.title).join('\n') ?? 'No movies found',
         },
         {
-          type: "resource",
+          type: 'resource',
           resource: {
             uri: `tmdb://movie/search/${params.query}`,
-            mimeType: "application/json",
+            mimeType: 'application/json',
             text: JSON.stringify(movies),
           },
         },
