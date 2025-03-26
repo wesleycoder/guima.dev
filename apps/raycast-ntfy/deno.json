@@ -1,0 +1,19 @@
+{
+  "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
+  "fmt": {
+    "singleQuote": true,
+    "lineWidth": 120,
+    "semiColons": false
+  },
+  "compilerOptions": {
+    "lib": [
+      "DOM",
+      "ES2023"
+    ],
+    "strict": true,
+    "jsx": "react-jsx"
+  },
+  "unstable": [
+    "sloppy-imports"
+  ]
+}
