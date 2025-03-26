@@ -28,7 +28,7 @@ type Message = {
   body: {
     title: string
     topic: string
-    tags?: string
+    tags?: string[]
     message?: string
     click?: string
     actions?: Action[]
@@ -38,7 +38,7 @@ type Message = {
 const parseMessage = async ({ url, message }: { url?: string; message?: string }, topic: string): Promise<Message> => {
   // Is message only
   if (!!message && !url) {
-    return { msgType: "message", body: { topic, title: "Your Message", message, tags: "speech_balloon" } }
+    return { msgType: "message", body: { topic, title: "Your Message", message, tags: ["speech_balloon"] } }
   }
 
   const selectedText = await getSelectedText().catch(() => "")
@@ -53,7 +53,7 @@ const parseMessage = async ({ url, message }: { url?: string; message?: string }
         topic,
         title: "Your Link",
         message,
-        tags: "link",
+        tags: ["link"],
         actions: [
           {
             action: "view",
@@ -73,7 +73,7 @@ const parseMessage = async ({ url, message }: { url?: string; message?: string }
         topic,
         title: "Your Selected Text",
         message: selectedText,
-        tags: "clipboard",
+        tags: ["clipboard"],
       },
     }
   }
@@ -85,7 +85,7 @@ const parseMessage = async ({ url, message }: { url?: string; message?: string }
       topic,
       title: "Your Ping",
       message: "Pong!",
-      tags: "ping_pong",
+      tags: ["ping_pong"],
     },
   }
 }
@@ -97,7 +97,7 @@ export default async function main(props: { arguments: Arguments }) {
 
     if (!topic) throw new Error("No topic provided")
 
-    const { headers, msgType, ...body } = await parseMessage(props.arguments, topic)
+    const { headers, msgType, body } = await parseMessage(props.arguments, topic)
 
     const response = await fetch(defaultServer, {
       method: "POST",
