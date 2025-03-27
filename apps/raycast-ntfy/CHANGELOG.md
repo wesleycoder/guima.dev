@@ -3,6 +3,7 @@
 ## [Logo update] - {PR_MERGE_DATE}
 
 - Updating logo to be ntfy.sh's logo with @binwiederhier's permission
+- Updated deps (@raycast/api@1.94.2)
 
 ## [Readme and Licence] - 2025-03-26
 
