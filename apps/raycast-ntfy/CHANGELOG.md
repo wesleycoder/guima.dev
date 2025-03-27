@@ -4,6 +4,8 @@
 
 - Updating logo to be ntfy.sh's logo with @binwiederhier's permission
 - Updated deps (@raycast/api@1.94.2)
+- Better cache config label (explain delayed/old notifications)
+- Fix button label for link notifications
 
 ## [Readme and Licence] - 2025-03-26
 

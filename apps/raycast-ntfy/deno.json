@@ -12,8 +12,5 @@
     ],
     "strict": true,
     "jsx": "react-jsx"
-  },
-  "unstable": [
-    "sloppy-imports"
-  ]
+  }
 }

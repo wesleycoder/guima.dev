@@ -57,7 +57,7 @@ const parseMessage = async ({ url, message }: { url?: string; message?: string }
         actions: [
           {
             action: 'view',
-            label: message || 'Open Link',
+            label: 'Open Link',
             url: link,
           },
         ],
@@ -103,7 +103,7 @@ export default async function main(props: { arguments: Arguments }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        ...(cache ? { Cache: 'no-cache' } : {}),
+        ...(cache ? {} : { Cache: 'no-cache' }),
         ...headers,
       },
       body: JSON.stringify(body),

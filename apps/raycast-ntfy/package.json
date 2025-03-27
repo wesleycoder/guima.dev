@@ -65,8 +65,8 @@
     },
     {
       "name": "cache",
-      "title": "Cache",
-      "description": "Cache notifications in ntfy.sh so clients can receive delayed notifications (@see https://docs.ntfy.sh/publish/#message-caching)",
+      "title": "Cache (send old notifications when connected)",
+      "description": "Devices can receive notifications when connected after the message is sent.",
       "type": "checkbox",
       "label": "Cache",
       "default": false,
