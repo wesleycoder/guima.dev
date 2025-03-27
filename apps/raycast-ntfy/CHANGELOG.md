@@ -1,6 +1,10 @@
 # Ntfy Changelog
 
-## [Readme and Licence] - {PR_MERGE_DATE}
+## [Logo update] - {PR_MERGE_DATE}
+
+- Updating logo to be ntfy.sh's logo with @binwiederhier's permission
+
+## [Readme and Licence] - 2025-03-26
 
 - Preparing package for Raycast store
 - Added screenshots for store
