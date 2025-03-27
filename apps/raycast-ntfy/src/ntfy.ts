@@ -13,7 +13,7 @@ type Preferences = {
 }
 
 type Action = {
-  action: 'http' | 'view' | 'broadcast' | 'run'
+  action: 'http' | 'view' | 'broadcast'
   label: string
   url?: string
   body?: string

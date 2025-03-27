@@ -3,7 +3,7 @@
   "name": "ntfy",
   "title": "Ntfy",
   "description": "Send notifications to your devices using ntfy.sh",
-  "icon": "phone.png",
+  "icon": "ntfy.png",
   "author": "wesleycoder",
   "owner": "tavern",
   "categories": ["Productivity", "Communication", "Web", "Developer Tools"],
