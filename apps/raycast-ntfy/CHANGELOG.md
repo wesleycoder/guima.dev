@@ -6,6 +6,8 @@
 - Updated deps (@raycast/api@1.94.2)
 - Better cache config label (explain delayed/old notifications)
 - Fix button label for link notifications
+- Better logic for message types
+- Fix message type for invalid urls
 
 ## [Readme and Licence] - 2025-03-26
 

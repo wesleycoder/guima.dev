@@ -36,17 +36,13 @@ type Message = {
 }
 
 const parseMessage = async ({ url, message }: { url?: string; message?: string }, topic: string): Promise<Message> => {
-  // Is message only
-  if (!!message && !url) {
-    return { msgType: 'message', body: { topic, title: 'Your Message', message, tags: ['speech_balloon'] } }
-  }
-
   const selectedText = await getSelectedText().catch(() => '')
-  const isUrl = URL.canParse(url || message || selectedText.trim())
+  const normalizedUrl = url?.startsWith('http') ? url : `https://${url}`
+  const isUrl = URL.canParse(normalizedUrl || message || selectedText.trim())
 
   // Is link
   if (isUrl) {
-    const link = url || message || selectedText
+    const link = normalizedUrl || message || selectedText
     return {
       msgType: 'link',
       body: {
@@ -76,6 +72,11 @@ const parseMessage = async ({ url, message }: { url?: string; message?: string }
         tags: ['clipboard'],
       },
     }
+  }
+
+  // Is message only
+  if (message) {
+    return { msgType: 'message', body: { topic, title: 'Your Message', message, tags: ['speech_balloon'] } }
   }
 
   // Is ping
