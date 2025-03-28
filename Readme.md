@@ -1,4 +1,4 @@
-# Guima monorepo
+# Wés Guima monorepo
 
 ## This repo
 
