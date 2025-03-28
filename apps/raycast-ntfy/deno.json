@@ -3,7 +3,7 @@
   "fmt": {
     "singleQuote": true,
     "lineWidth": 120,
-    "semiColons": false
+    "semiColons": true
   },
   "compilerOptions": {
     "lib": [
