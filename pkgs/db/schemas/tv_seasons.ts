@@ -1,13 +1,12 @@
 import { relations, sql } from 'drizzle-orm'
-import { integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { type AnySQLiteColumn, integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-typebox'
 import { tvEpisodes } from './tv_episodes.ts'
 import { tvSeries } from './tv_series.ts'
 
 export const tvSeasons = sqliteTable('tv_seasons', {
   id: integer('id').primaryKey(),
-  tvSeriesId: integer('tv_series_id')
-    .notNull()
-    .references(() => tvSeries.id),
+  tvSeriesId: integer('tv_series_id').notNull().references((): AnySQLiteColumn => tvSeries.id),
   seasonNumber: integer('season_number').notNull(),
   name: text('name'),
   overview: text('overview'),
@@ -19,6 +18,13 @@ export const tvSeasons = sqliteTable('tv_seasons', {
     sql`(strftime('%s', 'now'))`,
   ),
 })
+
+export const tvSeasonsSchema = createSelectSchema(tvSeasons)
+export const newTvSeasonsSchema = createInsertSchema(tvSeasons)
+export const changedTvSeasonsSchema = createUpdateSchema(tvSeasons)
+export type TvSeason = typeof tvSeasonsSchema.static
+export type NewTvSeason = typeof newTvSeasonsSchema.static
+export type ChangedTvSeason = typeof changedTvSeasonsSchema.static
 
 export const tvSeasonsRelations = relations(tvSeasons, ({ one, many }) => ({
   series: one(tvSeries, {

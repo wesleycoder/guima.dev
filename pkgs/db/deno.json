@@ -11,6 +11,7 @@
     "@std/assert": "jsr:@std/assert@1",
     "drizzle-kit": "npm:drizzle-kit@^0.30.5",
     "drizzle-orm": "npm:drizzle-orm@^0.40.1",
+    "drizzle-typebox": "npm:drizzle-typebox@^0.3.1",
     "ulid": "npm:ulid@^2.4.0",
     "zod": "npm:zod@^3.24.2"
   },
