@@ -197,12 +197,11 @@ async function shutdown(signal: string) {
 
 if (import.meta.main) {
   try {
-    console.info(`Starting server on port ${env.PORT}`)
-
     Deno.serve({
       port: env.PORT,
       hostname: '0.0.0.0',
       signal: controller.signal,
+      onListen: ({ port }) => console.info(`Started server on port ${port}`),
     }, app.fetch)
 
     if (env.isDev) {

@@ -1,1 +1,5 @@
+export * from './genres.ts'
 export * from './movies.ts'
+export * from './tv_episodes.ts'
+export * from './tv_seasons.ts'
+export * from './tv_series.ts'
