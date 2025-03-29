@@ -5,9 +5,7 @@ export const getTvSeriesById = async (tvId: number) => {
     params: { path: { series_id: tvId } },
   })
 
-  if (!res.data) {
-    throw new Error(`Tv with id "${tvId}" not found`)
-  }
+  if (!res.data) throw new Error(`Tv with id "${tvId}" not found`)
 
   return res.data satisfies TvSeries
 }
@@ -21,9 +19,7 @@ export const searchTv = async (query: string) => {
     params: { query: { query } },
   })
 
-  if (!res.data) {
-    throw new Error('No tv found')
-  }
+  if (!res.data) throw new Error('No tv found')
 
   return res.data satisfies TvSeriesSearch
 }

@@ -5,9 +5,7 @@ export const getMovieById = async (movieId: number) => {
     params: { path: { movie_id: movieId } },
   })
 
-  if (!res.data) {
-    throw new Error(`Movie with id "${movieId}" not found`)
-  }
+  if (!res.data) throw new Error(`Movie with id "${movieId}" not found`)
 
   return res.data satisfies Movie
 }
@@ -21,9 +19,7 @@ export const searchMovies = async (query: string) => {
     params: { query: { query } },
   })
 
-  if (!res.data) {
-    throw new Error('No movies found')
-  }
+  if (!res.data) throw new Error('No movies found')
 
   return res.data satisfies MovieSearch
 }

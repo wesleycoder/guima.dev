@@ -7,12 +7,17 @@ export const client = createClient<paths, 'application/json'>({
   headers: { Authorization: `Bearer ${env.TMDB_API_KEY}` },
 })
 
-export type Movie = operations['movie-details']['responses']['200']['content']['application/json']
-export type MovieSearch = operations['search-movie']['responses']['200']['content']['application/json']
+type Operation<T extends keyof operations> = operations[T]['responses'][200]['content']['application/json']
 
-export type TvSeries = operations['tv-series-details']['responses']['200']['content']['application/json']
-export type TvEpisode = operations['tv-episode-details']['responses']['200']['content']['application/json']
-export type TvSeason = operations['tv-season-details']['responses']['200']['content']['application/json']
-export type TvSeriesSearch = operations['search-tv']['responses']['200']['content']['application/json']
+export type Movie = Operation<'movie-details'>
+export type MovieSearch = Operation<'search-movie'>
+
+export type TvSeries = Operation<'tv-series-details'>
+export type TvEpisode = Operation<'tv-episode-details'>
+export type TvSeason = Operation<'tv-season-details'>
+export type TvSeriesSearch = Operation<'search-tv'>
+
+export type Person = Operation<'person-details'>
+export type PersonSearch = Operation<'search-person'>
 
 export default client
