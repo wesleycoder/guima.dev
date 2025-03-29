@@ -1,8 +1,8 @@
 import { relations, sql } from 'drizzle-orm'
 import { type AnySQLiteColumn, integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-typebox'
-import { tvEpisodes } from './tv_episodes.ts'
-import { tvSeries } from './tv_series.ts'
+import { tvEpisodes } from './tvEpisodes.ts'
+import { tvSeries } from './tvSeries.ts'
 
 export const tvSeasons = sqliteTable('tv_seasons', {
   id: integer('id').primaryKey(),

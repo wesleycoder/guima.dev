@@ -27,17 +27,13 @@ export const activeServers = new Map<string, McpServer>()
 
 async function deleteTransport(sessionId: string) {
   const transport = activeTransports.get(sessionId)
-  if (transport) {
-    await transport.close()
-  }
+  if (transport) await transport.close()
   activeTransports.delete(sessionId)
 }
 
 async function deleteServer(sessionId: string) {
   const server = activeServers.get(sessionId)
-  if (server) {
-    await server.close()
-  }
+  if (server) await server.close()
   activeServers.delete(sessionId)
 }
 
@@ -53,8 +49,8 @@ const getMcpServer = () => {
     },
   })
 
-  tools.forEach((tool) => {
-    mcpServer.tool(tool.name, tool.description, tool.paramsSchema, tool.callback)
+  tools.forEach(({ name, description, paramsSchema, callback }) => {
+    mcpServer.tool(name, description, paramsSchema, callback)
   })
 
   resources.forEach(({ name, uri, list, complete, callback, ...metadata }) => {

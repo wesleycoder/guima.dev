@@ -2,7 +2,7 @@ import { relations, sql } from 'drizzle-orm'
 import { type AnySQLiteColumn, integer, primaryKey, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-typebox'
 import { genres } from './genres.ts'
-import { tvEpisodes } from './tv_episodes.ts'
+import { tvEpisodes } from './tvEpisodes.ts'
 
 export const tvSeries = sqliteTable('tv_series', {
   id: integer('id').primaryKey(),
@@ -24,15 +24,15 @@ export const tvSeries = sqliteTable('tv_series', {
   voteAverage: real('vote_average'),
   voteCount: integer('vote_count'),
   adult: integer('adult', { mode: 'boolean' }),
-  origin_country: text('origin_country'),
+  originCountry: text('origin_country'),
   originalLanguage: text('original_language'),
   languages: text('languages'),
-  episode_run_time: text('episode_run_time'),
-  created_by: text('created_by', { mode: 'json' }),
+  episodeRunTime: text('episode_run_time'),
+  createdBy: text('created_by', { mode: 'json' }),
   networks: text('networks', { mode: 'json' }),
-  production_companies: text('production_companies', { mode: 'json' }),
-  production_countries: text('production_countries', { mode: 'json' }),
-  spoken_languages: text('spoken_languages', { mode: 'json' }),
+  productionCompanies: text('production_companies', { mode: 'json' }),
+  productionCountries: text('production_countries', { mode: 'json' }),
+  spokenLanguages: text('spoken_languages', { mode: 'json' }),
   lastEpisodeToAirId: integer('last_episode_to_air_id').references((): AnySQLiteColumn => tvEpisodes.id),
   nextEpisodeToAirId: integer('next_episode_to_air_id').references((): AnySQLiteColumn => tvEpisodes.id),
   createdAt: integer('created_at', { mode: 'timestamp' }).default(

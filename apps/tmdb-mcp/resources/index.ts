@@ -1,5 +1,3 @@
 import movie from './movie.ts'
 
-export const resources = new Map<string, TMDBResource>([
-  [movie.name, movie],
-])
+export const resources: TMDBResource[] = [movie]
