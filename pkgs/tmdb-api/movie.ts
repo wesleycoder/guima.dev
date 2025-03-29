@@ -1,6 +1,4 @@
 import client, { type Movie, type MovieSearch } from '#/client.ts'
-import * as movie from '#/movie.ts'
-import * as tv from '#/tv.ts'
 
 export const getMovieById = async (movieId: number) => {
   const res = await client.GET('/3/movie/{movie_id}', {
@@ -31,7 +29,7 @@ export const searchMovies = async (query: string) => {
 }
 
 export default {
-  client,
-  ...movie,
-  ...tv,
+  getMovieById,
+  getMoviesByIds,
+  searchMovies,
 }

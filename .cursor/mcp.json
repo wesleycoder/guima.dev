@@ -1,5 +1,12 @@
 {
   "mcpServers": {
+    "MCP Installer": {
+      "command": "npx",
+      "type": "stdio",
+      "args": [
+        "cursor-mcp-installer-free"
+      ]
+    },
     "tmdb": {
       "type": "sse",
       "url": "http://localhost:4200/sse",
@@ -8,6 +15,18 @@
       },
       "reconnectDelay": 1000,
       "maxRetries": 5
+    },
+    "sqlite": {
+      "command": "uv",
+      "type": "stdio",
+      "args": [
+        "run",
+        "--directory",
+        "./",
+        "mcp-server-sqlite",
+        "--db-path",
+        "./data.db"
+      ]
     }
   }
 }
