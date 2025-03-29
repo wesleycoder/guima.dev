@@ -1,0 +1,14 @@
+---
+import env from '@pkgs/env/main.ts'
+import Welcome from '../components/Welcome.astro'
+import Default from '../layouts/Default.astro'
+
+console.log('env:', env)
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `Defaults` directories, and start fresh.
+---
+
+<Default>
+  <pre>{JSON.stringify(env, null, 2)}</pre>
+  <Welcome />
+</Default>
