@@ -3,6 +3,10 @@
 Send notifications to your devices using ntfy.sh
 For more information visit their [documentation][ntfy-doc]
 
+## Demo
+
+[![yt-demo][yt-demo-thumb]][yt-demo]
+
 > [!WARNING]
 > This repo is published to a private org while developing, it may have features not available on the store.
 >
@@ -69,5 +73,7 @@ Feel free to leave me a tip on [Ko-Fi](https://ko-fi.com/wesleycoder/tip).
 [ntfy-docker]: https://docs.ntfy.sh/install/#docker
 [ntfy-self-host]: https://docs.ntfy.sh/install/
 [android-intent]: https://developer.android.com/guide/components/intents-filters
+[yt-demo]: https://youtu.be/euDhuH7UQGQ
+[yt-demo-thumb]: ./media/yt-demo-thumbnail.png
 [gh-feat-req]: https://github.com/raycast/extensions/issues/new?title=%5BNtfy%5D+...&template=extension_feature_request.yml&labels=extension%2Cfeature%2Brequest&extension-url=https%3A%2F%2Fwww.raycast.com%2Fwesleycoder%2Fntfy&body=%0A%3C%21--%0APlease+update+the+title+above+to+consisely+describe+the+issue%0A--%3E%0A%0A%23%23%23+Extension%0A%0A%23%7Brepository_url%28extension.latest_version%29%7D%0A%0A%23%23%23+Description%0A%0A%3C%21--%0ADescribe+the+feature+and+the+current+behavior%2Fstate.%0A--%3E%0A%0A%23%23%23+Who+will+benefit+from+this+feature%3F%0A%0A%23%23%23+Anything+else%3F%0A%0A%3C%21--%0ALinks%3F+References%3F+Anything+that+will+give+us+more+context%21%0ATip%3A+You+can+attach+images+or+log+files+by+clicking+this+area+to+highlight+it+and+then+dragging+files+in.%0A--%3E%0A%0A
 [gh-bug]: https://github.com/raycast/extensions/issues/new?title=%5BNtfy%5D+...&template=extension_bug_report.yml&labels=extension%2Cbug&extension-url=https%3A%2F%2Fwww.raycast.com%2Fwesleycoder%2Fntfy&body=%0A%3C%21--%0APlease+update+the+title+above+to+consisely+describe+the+issue%0A--%3E%0A%0A%23%23%23+Extension%0A%0Ahttps%3A%2F%2Fraycast.com%2F%23%7Bextension_path%28extension%29%7D%0A%0A%23%23%23+Description%0A%0A%3C%21--%0APlease+provide+a+clear+and+concise+description+of+what+the+bug+is.+Include+screenshots+if+needed.+Please+test+using+the+latest+version+of+the+extension%2C+Raycast+and+API.%0A--%3E%0A%0A%23%23%23+Steps+To+Reproduce%0A%0A%3C%21--%0AYour+bug+will+get+fixed+much+faster+if+the+extension+author+can+easily+reproduce+it.+Issues+without+reproduction+steps+may+be+immediately+closed+as+not+actionable.%0A--%3E%0A%0A1.+In+this+environment...%0A2.+With+this+config...%0A3.+Run+%27...%27%0A4.+See+error...%0A%0A%23%23%23+Current+Behavior%0A%0A%23%23%23+Expected+Behavior%0A%0A
