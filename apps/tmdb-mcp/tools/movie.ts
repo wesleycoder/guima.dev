@@ -1,14 +1,9 @@
-import type { CallToolResult } from '@modelcontextprotocol/sdk/dist/esm/types.d.ts'
 import client from '@pkgs/tmdb-api'
-import { z, type ZodRawShape } from 'zod'
+import { zod } from '@pkgs/ts-utils/typebox'
 
-const getMovieByIdInputSchema = {
-  id: z.number(),
-} satisfies ZodRawShape
+const getMovieByIdInputSchema = { id: zod('number') }
 
-type Content = CallToolResult
-
-export const getMovieById = {
+export const getMovieById: TMDBTool<typeof getMovieByIdInputSchema> = {
   name: 'get_movie_by_id',
   description: 'Get a movie by its ID. Useful for getting information about a single movie by its ID',
   paramsSchema: getMovieByIdInputSchema,
@@ -36,16 +31,14 @@ export const getMovieById = {
             text: JSON.stringify(movie),
           },
         },
-      ] satisfies Content[],
+      ],
     }
   },
-} satisfies TMDBTool<typeof getMovieByIdInputSchema>
+}
 
-const getMoviesByIdsInputSchema = {
-  ids: z.array(z.number()),
-} satisfies ZodRawShape
+const getMoviesByIdsInputSchema = { ids: zod('number[]') }
 
-export const getMoviesByIds = {
+export const getMoviesByIds: TMDBTool<typeof getMoviesByIdsInputSchema> = {
   name: 'get_movies_by_ids',
   description: 'Get multiple movies by their IDs. Useful for getting information about a list of movies by their IDs',
   paramsSchema: getMoviesByIdsInputSchema,
@@ -79,16 +72,14 @@ export const getMoviesByIds = {
             text: JSON.stringify(movies),
           },
         },
-      ] satisfies Content[],
+      ],
     }
   },
-} satisfies TMDBTool<typeof getMoviesByIdsInputSchema>
+}
 
-const searchMoviesInputSchema = {
-  query: z.string(),
-} satisfies ZodRawShape
+const searchMoviesInputSchema = { query: zod('string') }
 
-export const searchMovies = {
+export const searchMovies: TMDBTool<typeof searchMoviesInputSchema> = {
   name: 'search_movies',
   description: 'Search for movies by common search terms. Useful for finding movies by title, summary, actor, or genre',
   paramsSchema: searchMoviesInputSchema,
@@ -122,7 +113,7 @@ export const searchMovies = {
             text: JSON.stringify(movies),
           },
         },
-      ] satisfies Content[],
+      ],
     }
   },
-} satisfies TMDBTool<typeof searchMoviesInputSchema>
+}

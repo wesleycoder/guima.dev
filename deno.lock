@@ -20,6 +20,8 @@
     "npm:@raycast/eslint-config@^2.0.4": "2.0.4_eslint@9.23.0_prettier@3.5.3_typescript@5.8.2",
     "npm:@raycast/utils@^1.17.0": "1.19.1_@raycast+api@1.94.2__@types+node@22.13.10__@types+react@19.0.10_@types+node@22.13.10_@types+react@19.0.10",
     "npm:@raycast/utils@^1.19.1": "1.19.1_@raycast+api@1.94.2__@types+node@22.13.10__@types+react@19.0.10_@types+node@22.13.10_@types+react@19.0.10",
+    "npm:@sinclair/typebox@~0.34.31": "0.34.31",
+    "npm:@sinclair/typemap@0.9": "0.9.0_@sinclair+typebox@0.34.31_valibot@1.0.0__typescript@5.8.2_zod@3.24.2_typescript@5.8.2",
     "npm:@tailwindcss/node@^4.0.8": "4.0.8",
     "npm:@tailwindcss/oxide@^4.0.8": "4.0.8",
     "npm:@tailwindcss/vite@^4.0.8": "4.0.8_vite@6.1.1__@types+node@20.17.28__lightningcss@1.29.1_@types+node@20.17.28_lightningcss@1.29.1",
@@ -31,10 +33,11 @@
     "npm:@types/react@19.0.12": "19.0.12",
     "npm:astro@5.3.1": "5.3.1_typescript@5.8.2_@types+node@20.17.28_lightningcss@1.29.1_vite@6.1.1__@types+node@20.17.28__lightningcss@1.29.1_zod@3.24.2",
     "npm:drizzle-kit@~0.30.5": "0.30.5_esbuild@0.19.12",
-    "npm:drizzle-orm@~0.40.1": "0.40.1",
-    "npm:drizzle-typebox@~0.3.1": "0.3.1_@sinclair+typebox@0.34.31_drizzle-orm@0.40.1",
+    "npm:drizzle-orm@0.41": "0.41.0",
+    "npm:drizzle-typebox@~0.3.1": "0.3.1_@sinclair+typebox@0.34.31_drizzle-orm@0.41.0",
     "npm:eslint@^9.22.0": "9.23.0",
     "npm:eslint@^9.23.0": "9.23.0",
+    "npm:is-url@^1.2.4": "1.2.4",
     "npm:lightningcss@^1.29.1": "1.29.1",
     "npm:nanoid@^5.1.5": "5.1.5",
     "npm:openapi-fetch@~0.13.5": "0.13.5",
@@ -1196,6 +1199,14 @@
     "@sinclair/typebox@0.34.31": {
       "integrity": "sha512-qQ71T9DsITbX3dVCrcBERbs11YuSMg3wZPnT472JhqhWGPdiLgyvihJXU8m+ADJtJvRdjATIiACJD22dEknBrQ=="
     },
+    "@sinclair/typemap@0.9.0_@sinclair+typebox@0.34.31_valibot@1.0.0__typescript@5.8.2_zod@3.24.2_typescript@5.8.2": {
+      "integrity": "sha512-ZEhbpVqzx0Nsi+5YeNni4e7eMzCORZ6DZmEA4qIeQvJe23jPLEtqbzU4MhJXcWX6SPUNvi5yHmgipGAHb/k/9Q==",
+      "dependencies": [
+        "@sinclair/typebox",
+        "valibot",
+        "zod"
+      ]
+    },
     "@tailwindcss/node@4.0.8": {
       "integrity": "sha512-FKArQpbrbwv08TNT0k7ejYXpF+R8knZFAatNc0acOxbgeqLzwb86r+P3LGOjIeI3Idqe9CVkZrh4GlsJLJKkkw==",
       "dependencies": [
@@ -1887,10 +1898,10 @@
         "gel"
       ]
     },
-    "drizzle-orm@0.40.1": {
-      "integrity": "sha512-aPNhtiJiPfm3qxz1czrnIDkfvkSdKGXYeZkpG55NPTVI186LmK2fBLMi4dsHpPHlJrZeQ92D322YFPHADBALew=="
+    "drizzle-orm@0.41.0": {
+      "integrity": "sha512-7A4ZxhHk9gdlXmTdPj/lREtP+3u8KvZ4yEN6MYVxBzZGex5Wtdc+CWSbu7btgF6TB0N+MNPrvW7RKBbxJchs/Q=="
     },
-    "drizzle-typebox@0.3.1_@sinclair+typebox@0.34.31_drizzle-orm@0.40.1": {
+    "drizzle-typebox@0.3.1_@sinclair+typebox@0.34.31_drizzle-orm@0.41.0": {
       "integrity": "sha512-XRFaWyMC5MN5CRYoO8MiPIy7NmjrJGaBRNbMPOZEMSWWOOLjcQ5tyjUoPfenFBsw2Rs4UAN5wDGFAaJTia5E/A==",
       "dependencies": [
         "@sinclair/typebox",
@@ -4249,6 +4260,12 @@
     "utils-merge@1.0.1": {
       "integrity": "sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA=="
     },
+    "valibot@1.0.0_typescript@5.8.2": {
+      "integrity": "sha512-1Hc0ihzWxBar6NGeZv7fPLY0QuxFMyxwYR2sF1Blu7Wq7EnremwY2W02tit2ij2VJT8HcSkHAQqmFfl77f73Yw==",
+      "dependencies": [
+        "typescript"
+      ]
+    },
     "vary@1.1.2": {
       "integrity": "sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg=="
     },
@@ -4466,8 +4483,7 @@
         "dependencies": [
           "jsr:@std/assert@1",
           "npm:drizzle-kit@~0.30.5",
-          "npm:drizzle-orm@~0.40.1",
-          "npm:drizzle-typebox@~0.3.1",
+          "npm:drizzle-orm@0.41",
           "npm:ulid@^2.4.0",
           "npm:zod@^3.24.2"
         ]
@@ -4490,7 +4506,11 @@
       },
       "pkgs/ts-utils": {
         "dependencies": [
-          "jsr:@std/assert@1"
+          "jsr:@std/assert@1",
+          "npm:@sinclair/typebox@~0.34.31",
+          "npm:@sinclair/typemap@0.9",
+          "npm:drizzle-orm@0.41",
+          "npm:drizzle-typebox@~0.3.1"
         ]
       }
     }

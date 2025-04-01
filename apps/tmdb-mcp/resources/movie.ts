@@ -1,7 +1,7 @@
 import type { RequestHandlerExtra, Variables } from '@modelcontextprotocol/sdk'
 import client from '@pkgs/tmdb-api'
 
-export default {
+export const movie: TMDBResource = {
   name: 'movie',
   uri: 'tmdb://movie/{id}',
   description: 'A movie',
@@ -33,4 +33,4 @@ export default {
       }],
     }
   },
-} satisfies TMDBResource
+}

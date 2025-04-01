@@ -1,14 +1,9 @@
-import type { CallToolResult } from '@modelcontextprotocol/sdk/dist/esm/types.d.ts'
 import client from '@pkgs/tmdb-api'
-import { z, type ZodRawShape } from 'zod'
+import { zod } from '@pkgs/ts-utils/typebox'
 
-const getTvSeriesByIdInputSchema = {
-  id: z.number(),
-} satisfies ZodRawShape
+const getTvSeriesByIdInputSchema = { id: zod('number') }
 
-type Content = CallToolResult
-
-export const getTvSeriesById = {
+export const getTvSeriesById: TMDBTool<typeof getTvSeriesByIdInputSchema> = {
   name: 'get_tv_series_by_id',
   description: 'Get a tv series by its ID. Useful for getting information about a single tv series by its ID',
   paramsSchema: getTvSeriesByIdInputSchema,
@@ -36,16 +31,14 @@ export const getTvSeriesById = {
             text: JSON.stringify(tv),
           },
         },
-      ] satisfies Content[],
+      ],
     }
   },
-} satisfies TMDBTool<typeof getTvSeriesByIdInputSchema>
+}
 
-const getTvSeriesByIdsInputSchema = {
-  ids: z.array(z.number()),
-} satisfies ZodRawShape
+const getTvSeriesByIdsInputSchema = { ids: zod('number[]') }
 
-export const getTvSeriesByIds = {
+export const getTvSeriesByIds: TMDBTool<typeof getTvSeriesByIdsInputSchema> = {
   name: 'get_tv_series_by_ids',
   description:
     'Get multiple tv series by their IDs. Useful for getting information about a list of tv series by their IDs',
@@ -80,16 +73,14 @@ export const getTvSeriesByIds = {
             text: JSON.stringify(tvSeries),
           },
         },
-      ] satisfies Content[],
+      ],
     }
   },
-} satisfies TMDBTool<typeof getTvSeriesByIdsInputSchema>
+}
 
-const searchTvInputSchema = {
-  query: z.string(),
-} satisfies ZodRawShape
+const searchTvInputSchema = { query: zod('string') }
 
-export const searchTv = {
+export const searchTv: TMDBTool<typeof searchTvInputSchema> = {
   name: 'search_tv',
   description:
     'Search for tv series by common search terms. Useful for finding tv series by title, summary, actor, or genre',
@@ -124,7 +115,7 @@ export const searchTv = {
             text: JSON.stringify(tvSeries),
           },
         },
-      ] satisfies Content[],
+      ],
     }
   },
-} satisfies TMDBTool<typeof searchTvInputSchema>
+}

@@ -1,6 +1,6 @@
+import { createSchemaUtils } from '@pkgs/ts-utils/typebox'
 import { relations, sql } from 'drizzle-orm'
 import { type AnySQLiteColumn, integer, primaryKey, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
-import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-typebox'
 import { genres } from './genres.ts'
 import { tvEpisodes } from './tvEpisodes.ts'
 
@@ -40,12 +40,10 @@ export const tvSeries = sqliteTable('tv_series', {
   ),
 })
 
-export const tvSeriesSchema = createSelectSchema(tvSeries)
-export const newTvSeriesSchema = createInsertSchema(tvSeries)
-export const changedTvSeriesSchema = createUpdateSchema(tvSeries)
-export type TvSeries = typeof tvSeriesSchema.static
-export type NewTvSeries = typeof newTvSeriesSchema.static
-export type ChangedTvSeries = typeof changedTvSeriesSchema.static
+export const tvSeriesUtils = createSchemaUtils(tvSeries)
+export type TvSeries = typeof tvSeriesUtils.Select
+export type NewTvSeries = typeof tvSeriesUtils.Insert
+export type ChangedTvSeries = typeof tvSeriesUtils.Update
 
 export const tvGenres = sqliteTable(
   'tv_genres',
@@ -56,12 +54,10 @@ export const tvGenres = sqliteTable(
   (table) => [primaryKey({ columns: [table.tvSeriesId, table.genreId] })],
 )
 
-export const tvGenresSchema = createSelectSchema(tvGenres)
-export const newTvGenresSchema = createInsertSchema(tvGenres)
-export const changedTvGenresSchema = createUpdateSchema(tvGenres)
-export type TvGenre = typeof tvGenresSchema.static
-export type NewTvGenre = typeof newTvGenresSchema.static
-export type ChangedTvGenre = typeof changedTvGenresSchema.static
+export const tvGenreUtils = createSchemaUtils(tvGenres)
+export type TvGenre = typeof tvGenreUtils.Select
+export type NewTvGenre = typeof tvGenreUtils.Insert
+export type ChangedTvGenre = typeof tvGenreUtils.Update
 
 export const tvGenresRelations = relations(tvGenres, ({ one }) => ({
   tvSeries: one(tvSeries, {

@@ -1,3 +1,4 @@
+import { createSchemaUtils } from '@pkgs/ts-utils/typebox'
 import { relations, sql } from 'drizzle-orm'
 import { type AnySQLiteColumn, integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import { tvSeasons } from './tvSeasons.ts'
@@ -24,6 +25,11 @@ export const tvEpisodes = sqliteTable('tv_episodes', {
     sql`(strftime('%s', 'now'))`,
   ),
 })
+
+export const tvEpisodeUtils = createSchemaUtils(tvEpisodes)
+export type TvEpisode = typeof tvEpisodeUtils.Select
+export type NewTvEpisode = typeof tvEpisodeUtils.Insert
+export type ChangedTvEpisode = typeof tvEpisodeUtils.Update
 
 export const tvEpisodesRelations = relations(tvEpisodes, ({ one }) => ({
   series: one(tvSeries, {

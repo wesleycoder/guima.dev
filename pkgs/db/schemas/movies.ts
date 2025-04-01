@@ -1,6 +1,6 @@
+import { createSchemaUtils } from '@pkgs/ts-utils/typebox'
 import { relations, sql } from 'drizzle-orm'
 import { type AnySQLiteColumn, integer, primaryKey, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
-import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-typebox'
 import { genres } from './genres.ts'
 
 export const movies = sqliteTable('movies', {
@@ -29,12 +29,10 @@ export const movies = sqliteTable('movies', {
   ),
 })
 
-export const movieSchema = createSelectSchema(movies)
-export const newMovieSchema = createInsertSchema(movies)
-export const changedMovieSchema = createUpdateSchema(movies)
-export type Movie = typeof movieSchema.static
-export type NewMovie = typeof newMovieSchema.static
-export type ChangedMovie = typeof changedMovieSchema.static
+export const movieUtils = createSchemaUtils(movies)
+export type Movie = typeof movieUtils.Select
+export type NewMovie = typeof movieUtils.Insert
+export type ChangedMovie = typeof movieUtils.Update
 
 export const movieGenres = sqliteTable(
   'movie_genres',
@@ -45,12 +43,10 @@ export const movieGenres = sqliteTable(
   (table) => [primaryKey({ columns: [table.movieId, table.genreId] })],
 )
 
-export const movieGenresSchema = createSelectSchema(movieGenres)
-export const newMovieGenresSchema = createInsertSchema(movieGenres)
-export const changedMovieGenresSchema = createUpdateSchema(movieGenres)
-export type MovieGenre = typeof movieGenresSchema.static
-export type NewMovieGenre = typeof newMovieGenresSchema.static
-export type ChangedMovieGenre = typeof changedMovieGenresSchema.static
+export const movieGenreUtils = createSchemaUtils(movieGenres)
+export type MovieGenre = typeof movieGenreUtils.Select
+export type NewMovieGenre = typeof movieGenreUtils.Insert
+export type ChangedMovieGenre = typeof movieGenreUtils.Update
 
 export const movieGenresRelations = relations(movieGenres, ({ one }) => ({
   movie: one(movies, {

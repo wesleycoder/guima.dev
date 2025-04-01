@@ -11,15 +11,15 @@ declare global {
   type ToolParams<T extends ZodRawShape = {}> = z.infer<z.ZodObject<T>>
 
   // deno-lint-ignore ban-types
-  type TMDBTool<Params extends ZodRawShape = {}> = {
+  type TMDBTool<Params extends ZodRawShape = {}> = Pretty<{
     name: string
     description: string
     paramsSchema: Params
     examplePayload: ToolParams<Params>
     callback: ToolCallback<Params>
-  }
+  }>
 
-  export type TMDBResource = {
+  export type TMDBResource = Pretty<{
     name: string
     uri: string
     description: string
@@ -27,7 +27,7 @@ declare global {
     list: ListResourcesCallback
     complete: Record<string, CompleteResourceTemplateCallback>
     callback: ReadResourceTemplateCallback
-  }
+  }>
 }
 
 export {}
