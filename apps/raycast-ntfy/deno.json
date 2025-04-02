@@ -5,6 +5,11 @@
     "lineWidth": 120,
     "semiColons": true
   },
+  "lint": {
+    "rules": {
+      "exclude": ["no-sloppy-imports"]
+    }
+  },
   "compilerOptions": {
     "lib": [
       "DOM",

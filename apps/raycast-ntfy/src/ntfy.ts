@@ -1,33 +1,10 @@
 import { closeMainWindow, getPreferenceValues, getSelectedText, showToast, Toast } from '@raycast/api';
 import { showFailureToast } from '@raycast/utils';
 
-type Action = {
-  action: 'http' | 'view' | 'broadcast';
-  label: string;
-  url?: string;
-  body?: string;
-  extras?: Record<string, unknown>;
-  intent?: string;
-  clear?: boolean;
-};
-
-type Message = {
-  msgType: 'message' | 'ping' | 'clipboard' | 'link';
-  headers?: Record<string, string>;
-  body: {
-    title: string;
-    topic: string;
-    tags?: string[];
-    message?: string;
-    click?: string;
-    actions?: Action[];
-  };
-};
-
 const parseMessage = async (
   { url = '', message = '' }: { url?: string; message?: string },
   topic: string,
-): Promise<Message> => {
+): Promise<PayloadForMessage> => {
   const selectedText = await getSelectedText().catch(() => '');
   const normalizedUrl = url?.startsWith('http') ? url : `https://${url}`;
   const isUrl = URL.canParse(normalizedUrl || message || selectedText.trim());
@@ -84,6 +61,7 @@ const parseMessage = async (
 };
 
 export default async function main(props: { arguments: Arguments.Ntfy }) {
+  await closeMainWindow();
   try {
     const { defaultTopic, cache, defaultServer } = getPreferenceValues<Preferences>();
     const topic = props.arguments.topic || defaultTopic;
@@ -106,8 +84,6 @@ export default async function main(props: { arguments: Arguments.Ntfy }) {
       console.error(response.status, response.statusText, await response.text());
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
-    await closeMainWindow();
 
     showToast({
       style: Toast.Style.Success,
