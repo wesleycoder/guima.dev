@@ -1,0 +1,18 @@
+{
+  "_id": "59e9d2a2-6fe7-4464-ab2e-60d07dc84c9a",
+  "name": "ntfy",
+  "default": true,
+  "sortNum": 10000,
+  "created": "2025-04-01T20:14:20.679Z",
+  "modified": "2025-04-01T20:14:20.679Z",
+  "data": [
+    {
+      "name": "TOPIC",
+      "value": "wes-test"
+    },
+    {
+      "name": "SERVER",
+      "value": "ntfy.sh"
+    }
+  ]
+}

@@ -13,16 +13,24 @@
   ],
   "license": "MIT",
   "scripts": {
+    "prebuild": "tsx ./scripts/setup.ts",
     "build": "ray build -o dist",
     "dev": "ray develop",
     "fix-lint": "ray lint --fix",
     "lint": "ray lint",
+    "db": "drizzle-kit",
     "prepublishOnly": "echo \"\\n\\nIt seems like you are trying to publish the Raycast extension to npm.\\n\\nIf you did intend to publish it to npm, remove the \\`prepublishOnly\\` script and rerun \\`npm publish\\` again.\\nIf you wanted to publish it to the Raycast Store instead, use \\`npm run publish\\` instead.\\n\\n\" && exit 1",
     "publish": "npx @raycast/api@latest publish"
   },
   "commands": [
     {
       "name": "ntfy",
+      "keywords": [
+        "ntfy",
+        "ntfy-send",
+        "send",
+        "notification"
+      ],
       "title": "Send Notification",
       "subtitle": "Send a notification via ntfy.sh",
       "description": "Sends a message or link to your device via ntfy.sh notification",
@@ -50,6 +58,13 @@
     },
     {
       "name": "ntfy-clip",
+      "keywords": [
+        "ntfy",
+        "ntfy-clip",
+        "send",
+        "notification",
+        "clipboard"
+      ],
       "title": "Send Clipboard",
       "subtitle": "Send clipboard via ntfy.sh",
       "description": "Sends the current clipboard content (or selected text) via ntfy.sh notification",
@@ -65,6 +80,12 @@
     },
     {
       "name": "ntfy-topics",
+      "keywords": [
+        "ntfy",
+        "ntfy-topics",
+        "manage",
+        "topics"
+      ],
       "title": "Manage Topics",
       "subtitle": "Manage topics for use with this extension",
       "description": "Add, edit, remove, and list topics for use with this extension",
@@ -72,6 +93,13 @@
     },
     {
       "name": "ntfy-servers",
+      "keywords": [
+        "ntfy",
+        "ntfy-servers",
+        "ntfy-manage-servers",
+        "manage",
+        "servers"
+      ],
       "title": "Manage Servers",
       "subtitle": "Manage servers for use with this extension",
       "description": "Add, edit, remove, and list servers for use with this extension",
@@ -79,6 +107,13 @@
     },
     {
       "name": "ntfy-list",
+      "keywords": [
+        "ntfy",
+        "ntfy-list",
+        "ntfy-notifications",
+        "list",
+        "notifications"
+      ],
       "title": "List Notifications",
       "subtitle": "Received notifications from all servers and topics",
       "description": "Refresh and list received notifications from all servers and topics",
@@ -86,12 +121,20 @@
     },
     {
       "name": "ntfy-fetch",
+      "keywords": [
+        "ntfy",
+        "ntfy-fetch",
+        "ntfy-background",
+        "enable",
+        "background",
+        "notifications"
+      ],
       "title": "Enable Background Notifications",
       "subtitle": "Fetch notifications from all servers and topics",
       "description": "Add a menu bar icon that fetches notifications from all servers and topics in the background",
       "mode": "menu-bar",
       "disabledByDefault": false,
-      "interval": "5m"
+      "interval": "30s"
     }
   ],
   "preferences": [
@@ -120,30 +163,43 @@
       "label": "Cache",
       "default": true,
       "required": true
+    },
+    {
+      "name": "encryptedKey",
+      "title": "DB password",
+      "description": "Password to use for the database, use a secure password and keep it safe in case you need to restore the database",
+      "type": "textfield",
+      "required": true,
+      "placeholder": "KxN_5Ys+LyV0-Mq2l8"
     }
   ],
   "dependencies": {
-    "@raycast/api": "^1.94.2",
+    "@raycast/api": "^1.94.3",
     "@raycast/utils": "^1.19.1",
+    "@xstate/react": "^5.0.3",
     "@xstate/store": "^3.4.2",
     "better-sqlite3": "^11.9.1",
-    "better-sqlite3-multiple-ciphers": "^11.9.1",
+    "better-sqlite3-multiple-ciphers": "11.9.1",
     "drizzle-orm": "^0.41.0",
     "immer": "^10.1.1",
     "is-url": "^1.2.4",
     "nanoid": "^5.1.5",
     "react": "^19.1.0",
     "sql.js": "^1.13.0",
-    "tar-stream": "^3.1.7"
+    "tar-stream": "^3.1.7",
+    "xstate": "^5.19.2"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^2.0.4",
-    "@types/node": "22.13.14",
-    "@types/react": "^19.0.12",
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "22.14.0",
+    "@types/react": "^19.1.0",
     "@types/sql.js": "^1.4.9",
     "@types/tar-stream": "^3.1.3",
+    "drizzle-kit": "^0.30.6",
     "eslint": "^9.23.0",
     "prettier": "^3.5.3",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   }
 }

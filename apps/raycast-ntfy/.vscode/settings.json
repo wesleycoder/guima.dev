@@ -1,0 +1,108 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "todo-tree.tree.scanMode": "workspace",
+  "todo-tree.filtering.excludeGlobs": ["**/.vscode/settings.json"],
+  "todo-tree.regex.enableMultiLine": true,
+  "todo-tree.general.tags": [
+    "[ ]",
+    "[*]",
+    "[!]",
+    "[?]",
+    "[-]",
+    "[x]",
+    "!",
+    "!!",
+    "?",
+    "??",
+    "BUG:",
+    "HACK:",
+    "FIXME:",
+    "TODO:",
+    "WIP:",
+    "INFO:",
+    "DB:",
+    "MIGRATION:"
+  ],
+  "todo-tree.regex.regex": "(//\\s($TAGS)|<!--\\s($TAGS)|/\\*\\s($TAGS)|(?:^\\s*\\*\\s($TAGS))|#\\s($TAGS)|--\\s($TAGS)|-\\s($TAGS)|-->\\s($TAGS))",
+  "todo-tree.general.tagGroups": {
+    "todo": ["TODO:", "WIP:", "[ ]"],
+    "skip": ["[-]"],
+    "done": ["[x]"],
+    "warning": ["!", "!!", "[!]"],
+    "error": ["BUG:", "HACK:", "FIXME:", "[*]"],
+    "info": ["INFO:", "?", "??", "[?]"],
+    "db": ["DB:", "MIGRATION:"],
+    "debug": ["//"]
+  },
+  "todo-tree.highlights.customHighlight": {
+    "db": {
+      "icon": "database",
+      "type": "line",
+      "foreground": "#33FFFF",
+      "iconColour": "#33FFFF",
+      "gutterIcon": true
+    },
+    "warning": {
+      "icon": "alert-fill",
+      "type": "line",
+      "foreground": "#FFFF00",
+      "iconColour": "#FFFF00",
+      "gutterIcon": true
+    },
+    "info": {
+      "icon": "comment",
+      "type": "line",
+      "foreground": "#33FFFF",
+      "iconColour": "#33FFFF",
+      "gutterIcon": true
+    },
+    "todo": {
+      "icon": "square",
+      "type": "tag",
+      "iconColour": "#FFFF00",
+      "foreground": "#FFFF00",
+      "gutterIcon": true
+    },
+    "skip": {
+      "icon": "clock",
+      "type": "tag",
+      "iconColour": "#FFAA00",
+      "foreground": "#FFAA00",
+      "gutterIcon": true
+    },
+    "done": {
+      "icon": "check",
+      "type": "line",
+      "textDecoration": "line-through",
+      "iconColour": "#33FF33",
+      "foreground": "#33FF33",
+      "gutterIcon": true
+    },
+    "error": {
+      "icon": "bug",
+      "type": "line",
+      "foreground": "#FF2D00",
+      "iconColour": "#FF2D00",
+      "gutterIcon": true
+    }
+  }
+}

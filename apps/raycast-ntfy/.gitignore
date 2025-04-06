@@ -14,3 +14,8 @@ compiled_raycast_swift
 
 # build
 dist
+
+# sqlite
+*.db
+*.db-shm
+*.db-wal

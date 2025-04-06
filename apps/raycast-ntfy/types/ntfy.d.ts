@@ -8,9 +8,9 @@ type Action = {
   clear?: boolean;
 };
 
-type Message = {
+type NtfyMessage = {
   id: string;
-  title: string;
+  title?: string;
   topic: string;
   tags?: string[];
   message?: string;
@@ -18,8 +18,14 @@ type Message = {
   actions?: Action[];
 };
 
-type PayloadForMessage = {
+type NtfyMessagePayload = {
   msgType: 'message' | 'ping' | 'clipboard' | 'link';
   headers?: Record<string, string>;
-  body: Omit<Message, 'id'>;
+  body: Omit<NtfyMessage, 'id'>;
+};
+
+type Dependency = {
+  url: string;
+  files: { from: string; to: string }[];
+  destFolder: string;
 };

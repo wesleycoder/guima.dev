@@ -1,10 +1,12 @@
 import { getPreferenceValues, getSelectedText, showHUD } from '@raycast/api';
+import { eq, sql } from 'drizzle-orm';
+import { db$ } from '../db';
+import { messagesTable, serversTable, topicsTable } from '../db/schema';
 
-export async function getNotifications() {
+export async function fetchMessages() {
   const { defaultServer, defaultTopic } = getPreferenceValues<Preferences>();
 
   const url = `${defaultServer}/${defaultTopic}/json?poll=1&since=5h`;
-
   const res = await fetch(url);
 
   if (!res.ok) {
@@ -15,13 +17,64 @@ export async function getNotifications() {
   const responseText = await res.text();
   const lines = responseText.split('\n').filter((l) => l.trim());
 
-  return lines.map((line) => JSON.parse(line));
+  const messages = lines.map((line) => JSON.parse(line) as NtfyMessage);
+
+  if (messages.length) {
+    let serverId: string, topicId: string;
+    const db = await db$;
+    const serverResult = await db
+      .select({ id: serversTable.id })
+      .from(serversTable)
+      .where(eq(serversTable.url, new URL(defaultServer)));
+    serverId = serverResult[0]?.id;
+
+    if (!serverResult.length) {
+      const [{ id }] = await db
+        .insert(serversTable)
+        .values({ name: 'Default', url: new URL(defaultServer) })
+        .onConflictDoUpdate({
+          target: [serversTable.id],
+          set: { name: sql`excluded.name` },
+        })
+        .returning({ id: serversTable.id });
+      serverId = id;
+    }
+    const topicResult = await db
+      .select({ id: topicsTable.id })
+      .from(topicsTable)
+      .where(eq(topicsTable.topic, defaultTopic));
+    topicId = topicResult[0]?.id;
+
+    if (!topicResult.length) {
+      const [{ id }] = await db
+        .insert(topicsTable)
+        .values({ topic: defaultTopic, serverId })
+        .onConflictDoUpdate({
+          target: [topicsTable.id],
+          set: { topic: sql`excluded.topic` },
+        })
+        .returning({ id: topicsTable.id });
+      topicId = id;
+    }
+
+    console.log('messages', messages);
+
+    await db
+      .insert(messagesTable)
+      .values(messages.map((message) => ({ id: message.id, serverId, topicId, message })))
+      .onConflictDoUpdate({
+        target: [messagesTable.id],
+        set: { message: sql`excluded.message` },
+      });
+  }
+
+  return messages;
 }
 
-export async function prepareMessage(
+async function prepareMessage(
   { url = '', message = '' }: { url?: string; message?: string },
   topic: string,
-): Promise<PayloadForMessage> {
+): Promise<NtfyMessagePayload> {
   const selectedText = await getSelectedText().catch(() => '');
   const normalizedUrl = url?.startsWith('http') ? url : `https://${url}`;
   const isUrl = URL.canParse(normalizedUrl || message || selectedText.trim());
@@ -84,7 +137,7 @@ export async function sendNotification(
 ) {
   const { defaultServer, defaultTopic } = getPreferenceValues<Preferences>();
   const currentTopic = topic || defaultTopic;
-  const { headers, msgType: _msgType, body } = await prepareMessage({ url, message }, currentTopic);
+  const { headers, msgType, body } = await prepareMessage({ url, message }, currentTopic);
 
   const res = await fetch(`${defaultServer}/${currentTopic}`, {
     method: 'POST',
@@ -96,18 +149,15 @@ export async function sendNotification(
     body: JSON.stringify(body),
   });
 
-  if (!res.ok) {
-    throw new Error(`Failed to send notification: ${res.status}`);
-  }
+  if (!res.ok) throw new Error(`Failed to send notification: ${res.status}`);
 
   const responseText = await res.text();
-
-  console.log('responseText', responseText);
+  console.log('responseText', msgType, responseText);
 
   return body;
 }
 
 export default {
-  getNotifications,
+  fetchMessages,
   sendNotification,
 };

@@ -1,0 +1,26 @@
+DB_PATH="./ntfy.db"
+ASSETS_PATH="./assets"
+SCRIPTS_PATH="./scripts"
+
+alias setup="npx tsx $SCRIPTS_PATH/setup.ts"
+
+function db() {
+  if [ "$1" = "clear" ]; then
+    if [ "$2" = "mig" ]; then
+      rm -rf $ASSETS_PATH/drizzle
+    else
+      rm -rf $DB_PATH*
+    fi
+  elif [ "$1" = "gen" ]; then
+    npx drizzle-kit generate
+  elif [ "$1" = "seed" ]; then
+    npx tsx $SCRIPTS_PATH/seed.ts
+  elif [ "$1" = "reset" ]; then
+    rm -rf $ASSETS_PATH/drizzle
+    rm -rf $DB_PATH*
+    npx drizzle-kit push --force
+    npx tsx $SCRIPTS_PATH/seed.ts
+  else
+    npx drizzle-kit $*
+  fi
+}

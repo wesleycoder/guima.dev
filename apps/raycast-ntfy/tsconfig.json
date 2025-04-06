@@ -1,16 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "include": ["src/**/*", "raycast-env.d.ts"],
+  "include": ["src/**/*", "raycast-env.d.ts", "scripts/**/*.ts", "types/ntfy.d.ts", "lib", "db"],
   "compilerOptions": {
-    "lib": ["ES2023"],
+    "lib": ["ESNext"],
     "module": "commonjs",
-    "target": "ES2023",
+    "target": "ESNext",
     "strict": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types", "./types"]
   }
 }

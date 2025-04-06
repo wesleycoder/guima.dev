@@ -4,7 +4,7 @@ import { showFailureToast } from '@raycast/utils';
 const parseMessage = async (
   { url = '', message = '' }: { url?: string; message?: string },
   topic: string,
-): Promise<PayloadForMessage> => {
+): Promise<NtfyMessagePayload> => {
   const selectedText = await getSelectedText().catch(() => '');
   const normalizedUrl = url?.startsWith('http') ? url : `https://${url}`;
   const isUrl = URL.canParse(normalizedUrl || message || selectedText.trim());

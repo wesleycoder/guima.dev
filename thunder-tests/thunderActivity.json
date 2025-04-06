@@ -78,5 +78,24 @@
       "raw": "{\n  \"id\": 1,\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"resources/list\"\n}",
       "form": []
     }
+  },
+  {
+    "_id": "4b737eb4-db55-4669-8d52-a0bd929c56ab",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://ntfy.sh/wes-test/json?poll=1",
+    "url": "https://ntfy.sh/wes-test/json?poll=1",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2025-04-01T16:41:43.359Z",
+    "modified": "2025-04-01T16:41:43.359Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "poll",
+        "value": "1",
+        "isPath": false
+      }
+    ]
   }
 ]

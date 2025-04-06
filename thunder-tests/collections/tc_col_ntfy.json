@@ -1,0 +1,66 @@
+{
+  "_id": "140d4a2e-4478-4fb9-b9c0-2b9c393d93e1",
+  "colName": "ntfy",
+  "created": "2025-04-01T16:41:19.316Z",
+  "sortNum": 20000,
+  "folders": [],
+  "requests": [
+    {
+      "_id": "3175d24f-141a-42c5-b8c3-83c6d0476f33",
+      "colId": "140d4a2e-4478-4fb9-b9c0-2b9c393d93e1",
+      "containerId": "",
+      "name": "get messages",
+      "url": "{{SERVER}}/{{TOPIC}}/json?poll=1&since=10h",
+      "method": "GET",
+      "sortNum": 10000,
+      "created": "2025-04-01T16:43:28.540Z",
+      "modified": "2025-04-01T20:15:26.793Z",
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*",
+          "isDisabled": true
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)",
+          "isDisabled": true
+        }
+      ],
+      "params": [
+        {
+          "name": "poll",
+          "value": "1",
+          "isPath": false
+        },
+        {
+          "name": "since",
+          "value": "10h",
+          "isPath": false
+        }
+      ]
+    },
+    {
+      "_id": "5187c27f-ae23-48af-906c-e2f289707665",
+      "colId": "140d4a2e-4478-4fb9-b9c0-2b9c393d93e1",
+      "containerId": "",
+      "name": "send message",
+      "url": "https://{{SERVER}}",
+      "method": "POST",
+      "sortNum": 20000,
+      "created": "2025-04-01T19:06:27.064Z",
+      "modified": "2025-04-01T20:15:30.021Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"topic\": \"{{TOPIC}}\",\n  \"title\": \"Your Ping\",\n  \"message\": \"Pong!\",\n  \"tags\": [\"ping_pong\"]\n}",
+        "form": []
+      }
+    }
+  ]
+}

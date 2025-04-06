@@ -1,69 +1,31 @@
 import { Icon, launchCommand, LaunchType, MenuBarExtra } from '@raycast/api';
-import { createStore } from '@xstate/store';
-import { useSelector } from '@xstate/store/react';
-import { produce } from 'immer';
-import { useEffect } from 'react';
-import { useDB } from './db';
-import { messagesTable } from './db/schema.ts';
-import { getNotifications } from './ntfy-api';
-
-type Context = {
-  messages: Message[];
-  servers: string[];
-  topics: string[];
-  isFetching: boolean;
-};
-
-const store = createStore({
-  context: {
-    messages: [],
-    servers: [],
-    topics: [],
-    isFetching: true,
-  } as Context,
-  on: {
-    fetch: (ctx, _evt, enq) => {
-      enq.effect(async () => {
-        const messages = await getNotifications();
-        store.send({ type: 'fetchDone', messages });
-      });
-      return { ...ctx, isFetching: true };
-    },
-    fetchDone: (ctx, evt: { messages: Message[] }) =>
-      produce(ctx, (draft) => {
-        draft.messages = evt.messages;
-        draft.isFetching = false;
-      }),
-  },
-});
+import { useActor } from '@xstate/react';
+import { fetchMachine } from './fetchMachine';
 
 export default function main() {
-  const ctx = useSelector(store, ({ context }) => context);
-  const [db, isInit] = useDB();
+  const [state] = useActor(fetchMachine);
 
-  useEffect(() => {
-    if (db) {
-      db.select().from(messagesTable).then((messages) => {
-        console.log('messages', messages.length);
-      });
-    }
-  }, [db]);
+  console.log('state', state.value);
 
   return (
     <MenuBarExtra
-      isLoading={ctx.isFetching || isInit}
-      title={`${ctx.isFetching ? '-' : ctx.messages.length}`}
+      isLoading={!state.matches('ready') || !state.matches('error')}
+      title={`${state.context.messages.length}`}
       icon={Icon.SpeechBubbleActive}
     >
-      <MenuBarExtra.Item title='Refresh' onAction={() => store.send({ type: 'fetch' })} />
-      <MenuBarExtra.Item
-        title='View'
-        onAction={() =>
-          launchCommand({
-            name: 'ntfy-list',
-            type: LaunchType.UserInitiated,
-          })}
-      />
+      {state.matches('error') && <MenuBarExtra.Item title="Error" subtitle={state.context.error ?? 'Unknown error'} />}
+      {state.matches('ready') && (
+        <MenuBarExtra.Item
+          title="View"
+          icon={Icon.List}
+          onAction={() =>
+            launchCommand({
+              name: 'ntfy-list',
+              type: LaunchType.UserInitiated,
+            })
+          }
+        />
+      )}
     </MenuBarExtra>
   );
 }
